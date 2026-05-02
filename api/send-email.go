@@ -1,17 +1,10 @@
-package main
+package handler
 
 import (
-	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
-type Payload struct {
-	Message string `json:"message"`
-}
-
 func Handler(w http.ResponseWriter, r *http.Request) {
-	var p Payload
-	json.NewDecoder(r.Body).Decode(&p)
-
-	w.Write([]byte("ok"))
+	fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
 }
