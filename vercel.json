@@ -1,14 +1,6 @@
 {
   "version": 2,
-  "functions": {
-    "api/*.go": {
-      "runtime": "vercel-go@3.0.0"
-    }
-  },
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.go"
-    }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
