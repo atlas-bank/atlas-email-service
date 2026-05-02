@@ -1,5 +1,7 @@
 {
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" }
-  ]
+  "functions": {
+    "api/*.go": {
+      "runtime": "go1.x"
+    }
+  }
 }
