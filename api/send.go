@@ -1,4 +1,4 @@
-package handler
+package handler // Pode ser package handler ou main
 
 import (
 	"encoding/json"
@@ -21,12 +21,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	var payload EmailPayload
 	err := json.NewDecoder(r.Body).Decode(&payload)
 	if err != nil {
-		http.Error(w, "Erro no JSON", http.StatusBadRequest)
+		http.Error(w, "Erro ao realizar parse do JSON", http.StatusBadRequest)
 		return
 	}
 
-	fmt.Printf("Processando e-mail para %s\n", payload.To)
+	fmt.Printf("Recebido webhook para: %s\n", payload.To)
 
 	w.WriteHeader(http.StatusOK)
-
+	w.Write([]byte("Webhook processado pela Vercel!"))
 }
