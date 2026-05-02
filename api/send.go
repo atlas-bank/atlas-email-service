@@ -1,9 +1,8 @@
-package main
+package handler
 
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 )
 
@@ -13,7 +12,7 @@ type EmailPayload struct {
 	Body    string `json:"body"`
 }
 
-func emailHandler(w http.ResponseWriter, r *http.Request) {
+func handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		fmt.Printf("Método HTTP inválido! Esperado: POST, recebido: %s", r.Method)
@@ -41,11 +40,4 @@ func emailHandler(w http.ResponseWriter, r *http.Request) {
 func sendEmail(p EmailPayload) error {
 	fmt.Printf("Assunto: %s | Conteúdo: %s\n", p.Subject, p.Body)
 	return nil
-}
-
-func main() {
-	http.HandleFunc("/atlas-web-hook/email-service", emailHandler)
-
-	fmt.Println("Servidor de e-mail rodando na porta 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
 }
