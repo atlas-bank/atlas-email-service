@@ -1,4 +1,4 @@
-package handler // Pode ser package handler ou main
+package main
 
 import (
 	"encoding/json"
